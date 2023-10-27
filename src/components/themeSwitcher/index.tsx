@@ -15,7 +15,7 @@ const ThemeSwitcher = () => {
         switchTheme();
       }}
     >
-      {theme === Themes.Dark ? <FaMoon /> : <FaSun />}
+      {theme === Themes.Dark ? <FaSun /> : <FaMoon />}
     </button>
   );
 };

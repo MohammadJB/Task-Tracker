@@ -13,13 +13,12 @@ import {
 } from "@mui/material";
 
 type ValuesType = Partial<Task> &
-  Pick<Task, "title" | "status" | "description" | "tags" | "priority">;
+  Pick<Task, "title" | "status" | "description" | "priority">;
 
 const formInitialValues = {
   title: "",
   status: TaskStatus.Incomplete,
   description: "",
-  tags: [],
   priority: TaskPriority.Medium,
 };
 
@@ -122,10 +121,8 @@ const TaskForm = ({ onSubmit, initialValues }: TaskFormProps) => {
         </RadioGroup>
       </FormControl>
 
-      {/* tags */}
-
       <Button
-        classname="mt-4"
+        className="mt-4"
         variant="contained"
         type="submit"
         disabled={Object.keys(formik.errors).length > 0 || !formik.dirty}

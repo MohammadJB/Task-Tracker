@@ -23,9 +23,9 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const root = document.getElementsByTagName("html")[0];
     if (theme === Themes.Light) {
-      root.className = "dark";
-    } else {
       root.className = "";
+    } else {
+      root.className = "dark";
     }
   }, [theme]);
 

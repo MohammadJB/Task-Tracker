@@ -20,8 +20,10 @@ const Page = ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <div>
-      <BackButton />
+    <>
+      <div className="py-4">
+        <BackButton />
+      </div>
       <TaskForm
         initialValues={selectedTask}
         onSubmit={(values) => {
@@ -31,12 +33,11 @@ const Page = ({ params }: { params: { id: string } }) => {
             title: values.title,
             status: values.status,
             description: values.description,
-            tags: values.tags,
             priority: values.priority,
           });
         }}
       />
-    </div>
+    </>
   );
 };
 

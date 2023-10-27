@@ -15,6 +15,5 @@ export type Task = {
   status: TaskStatus;
   description: string;
   creationDate: number;
-  tags: string[];
   priority: TaskPriority;
 };

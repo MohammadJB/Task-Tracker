@@ -37,13 +37,6 @@ const TaskItem = ({ item }: TaskItemProps) => {
       <div className="my-2">
         <PriorityBadge priority={item.priority} />
       </div>
-
-      <hr />
-      <div className="flex flex-wrap">
-        {item.tags.map((tag, index) => (
-          <span key={index}>{tag}</span>
-        ))}
-      </div>
     </div>
   );
 };

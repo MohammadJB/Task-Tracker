@@ -5,7 +5,7 @@ import PriorityBadge from "@/components/taskItem/priorityBadge";
 import { useTask } from "@/customHooks/useTask";
 import { Task, TaskStatus } from "@/types";
 import { useEffect, useState } from "react";
-import { Checkbox, Button } from "@mui/material";
+import { Checkbox, Button, FormControlLabel } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 const Page = ({ params }: { params: { id: string } }) => {
@@ -31,34 +31,36 @@ const Page = ({ params }: { params: { id: string } }) => {
       <div className="bg-main-100 dark:bg-main-900 rounded p-4 shadow">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-semibold">{selectedTask.title}</h2>
-          <div>
-            <Button onClick={() => router.push(`/${selectedTask.id}/edit`)}>
-              Edit
-            </Button>
-            <Button onClick={() => deleteTask(selectedTask.id)}>Delete</Button>
-          </div>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={selectedTask.status === TaskStatus.Completed}
+                onChange={() => changeTaskStatus(selectedTask.id)}
+              />
+            }
+            label="Completed"
+          />
         </div>
         <p>{selectedTask.description}</p>
-
-        <div>
-          <Checkbox
-            colorScheme="green"
-            isChecked={selectedTask.status === TaskStatus.Completed}
-            onChange={() => changeTaskStatus(selectedTask.id)}
-          />
-          <span>Completed</span>
-        </div>
 
         <div className="my-2">
           <PriorityBadge priority={selectedTask.priority} />
         </div>
-
-        <hr />
-
-        <div className="flex flex-wrap">
-          {selectedTask.tags.map((tag, index) => (
-            <span key={index}>{tag}</span>
-          ))}
+        <div className="flex justify-end gap-4">
+          <Button
+            variant="outlined"
+            onClick={() => router.push(`/${selectedTask.id}/edit`)}
+            color="warning"
+          >
+            Edit
+          </Button>
+          <Button
+            variant="outlined"
+            onClick={() => deleteTask(selectedTask.id)}
+            color="error"
+          >
+            Delete
+          </Button>
         </div>
       </div>
     </>

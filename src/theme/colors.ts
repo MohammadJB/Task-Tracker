@@ -33,5 +33,16 @@ export const colors = {
   "gray-500": "#63646C",
   "gray-600": "#393A44",
 
+  "red-100": "#FFE2E0",
+  "red-500": "#FF5E54",
+  "red-600": "#DE574F",
+  "red-700": "#C84040",
+
+  "green-100": "#C6FFDD",
+  "green-500": "#4DEC8C",
+  "green-600": "#44CC7A",
+  "green-700": "#7AC18A",
+  "green-800": "#518651",
+
   transparent: "#00000000",
 };

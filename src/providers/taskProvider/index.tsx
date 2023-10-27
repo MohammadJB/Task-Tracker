@@ -8,7 +8,7 @@ export type TaskContextType = {
   loading: boolean;
   createTask: (
     taskItem: Partial<Task> &
-      Pick<Task, "title" | "status" | "description" | "tags" | "priority">
+      Pick<Task, "title" | "status" | "description"  | "priority">
   ) => void;
   deleteTask: (taskId: string) => void;
   editTask: (taskItem: Task) => void;
@@ -46,7 +46,7 @@ const TaskProvider = ({ children }: { children: React.ReactNode }) => {
 
   const createTask = (
     taskItem: Partial<Task> &
-      Pick<Task, "title" | "status" | "description" | "tags" | "priority">
+      Pick<Task, "title" | "status" | "description"  | "priority">
   ) => {
     taskItem.id = Date.now().toString() + Math.random().toString();
     taskItem.creationDate = Date.now();

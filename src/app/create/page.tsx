@@ -8,7 +8,7 @@ const Page = () => {
   const { createTask } = useTask();
 
   return (
-    <div>
+    <>
       <div className="py-4">
         <BackButton />
       </div>
@@ -18,12 +18,11 @@ const Page = () => {
             title: values.title,
             status: values.status,
             description: values.description,
-            tags: values.tags,
             priority: values.priority,
           });
         }}
       />
-    </div>
+    </>
   );
 };
 
