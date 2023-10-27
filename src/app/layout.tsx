@@ -3,6 +3,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import ThemeProvider from "@/providers/themeProvider";
+import TaskProvider from "@/providers/taskProvider";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -20,8 +22,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={montserrat.className}>
         <ThemeProvider>
-          <Header />
-          {children}
+          <ChakraProvider>
+            <TaskProvider>
+              <Header />
+              <main className="max-w-screen-xl mx-auto p-6">{children}</main>
+            </TaskProvider>
+          </ChakraProvider>
         </ThemeProvider>
       </body>
     </html>
