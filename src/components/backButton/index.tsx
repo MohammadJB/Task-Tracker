@@ -1,14 +1,16 @@
 "use client";
 
 import { memo } from "react";
-import { Button } from "@chakra-ui/react";
+import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { FaArrowLeft } from "react-icons/fa";
 
 const BackButton = () => {
   const router = useRouter();
   return (
-    <Button onClick={() => router.back()} variant="outline">
-      Back
+    <Button onClick={() => router.back()} variant="outlined">
+      <FaArrowLeft />
+      <span className="ms-2">Back</span>
     </Button>
   );
 };

@@ -2,8 +2,8 @@ import ThemeSwitcher from "../themeSwitcher";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 shadow z-10 bg-lightBackground dark:bg-darkBackground">
-      <div className="max-w-screen-xl flex justify-between px-6 py-4 mx-auto">
+    <header className="shadow bg-main-100 dark:bg-main-900 z-10">
+      <div className="max-w-screen-xl flex justify-between items-center px-6 py-4 mx-auto">
         <h1 className="text-xl font-bold">Task Tracker</h1>
         <ThemeSwitcher />
       </div>

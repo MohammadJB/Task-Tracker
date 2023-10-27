@@ -4,6 +4,23 @@
 
 @layer base {
   body {
-    @apply bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText;
+    @apply bg-main-300 text-main-900 dark:bg-main-800 dark:text-main-100;
+  }
+
+  /* scrollbar */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    @apply bg-main-500 dark:bg-main-700;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    @apply bg-main-100 dark:bg-main-900;
   }
 }

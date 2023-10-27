@@ -31,11 +31,18 @@ const TaskProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const taskList = localStorage.getItem(TASK_LIST_KEY);
 
-    if (taskList) {
+    if (Array.isArray(taskList)) {
       setTaskList(JSON.parse(taskList));
     }
     setLoading(false);
   }, []);
+
+  const syncLocalStorage = (taskList: Task[]) => {
+    localStorage.setItem(
+      TASK_LIST_KEY,
+      JSON.stringify(taskList.concat(taskList))
+    );
+  };
 
   const createTask = (
     taskItem: Partial<Task> &
@@ -44,19 +51,15 @@ const TaskProvider = ({ children }: { children: React.ReactNode }) => {
     taskItem.id = Date.now().toString() + Math.random().toString();
     taskItem.creationDate = Date.now();
 
-    setTaskList(taskList.concat([taskItem as Task]));
-    localStorage.setItem(
-      TASK_LIST_KEY,
-      JSON.stringify(taskList.concat([taskItem as Task]))
-    );
+    const newTaskList = taskList.concat([taskItem as Task]);
+    setTaskList(newTaskList);
+    syncLocalStorage(newTaskList);
   };
 
   const deleteTask = (taskId: string) => {
-    setTaskList(taskList.filter((task) => task.id !== taskId));
-    localStorage.setItem(
-      TASK_LIST_KEY,
-      JSON.stringify(taskList.filter((task) => task.id !== taskId))
-    );
+    const newTaskList = taskList.filter((task) => task.id !== taskId);
+    setTaskList(newTaskList);
+    syncLocalStorage(newTaskList);
   };
 
   const editTask = (taskItem: Task) => {
@@ -66,8 +69,8 @@ const TaskProvider = ({ children }: { children: React.ReactNode }) => {
     );
     if (selectedTaskIndex > -1) {
       newTaskList[selectedTaskIndex] = taskItem;
-      setTaskList(taskList);
-      localStorage.setItem(TASK_LIST_KEY, JSON.stringify(taskList));
+      setTaskList(newTaskList);
+      syncLocalStorage(newTaskList);
     }
   };
 
@@ -83,7 +86,7 @@ const TaskProvider = ({ children }: { children: React.ReactNode }) => {
           : TaskStatus.Completed;
 
       setTaskList(newTaskList);
-      localStorage.setItem(TASK_LIST_KEY, JSON.stringify(taskList));
+      syncLocalStorage(newTaskList);
     }
   };
 

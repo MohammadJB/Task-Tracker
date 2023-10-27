@@ -7,14 +7,16 @@ import { FaMoon } from "react-icons/fa";
 
 const ThemeSwitcher = () => {
   const { theme, switchTheme } = useTheme();
+
   return (
-    <div
-      className="font-semibold flex items-center gap-2 cursor-pointer select-none"
-      onClick={() => switchTheme()}
+    <button
+      className="rounded hover:bg-main-300 hover:dark:bg-main-700 p-2"
+      onClick={() => {
+        switchTheme();
+      }}
     >
-      {theme === Themes.Dark ? <FaSun /> : <FaMoon />}
-      <span>{theme === Themes.Dark ? "Light" : "Dark"} Mode</span>
-    </div>
+      {theme === Themes.Dark ? <FaMoon /> : <FaSun />}
+    </button>
   );
 };
 

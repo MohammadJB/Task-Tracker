@@ -5,7 +5,7 @@ import PriorityBadge from "@/components/taskItem/priorityBadge";
 import { useTask } from "@/customHooks/useTask";
 import { Task, TaskStatus } from "@/types";
 import { useEffect, useState } from "react";
-import { Checkbox, Badge, Button } from "@chakra-ui/react";
+import { Checkbox, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 const Page = ({ params }: { params: { id: string } }) => {
@@ -23,32 +23,45 @@ const Page = ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <div>
-      <BackButton />
-      <h2>{selectedTask.title}</h2>
-      <Button onClick={() => router.push(`/${selectedTask.id}/edit`)}>
-        Edit
-      </Button>
-      <Button onClick={() => deleteTask(selectedTask.id)}>Delete</Button>
-      <div>
-        <Checkbox
-          colorScheme="green"
-          isChecked={selectedTask.status === TaskStatus.Completed}
-          onChange={() => changeTaskStatus(selectedTask.id)}
-        />
+    <>
+      <div className="py-4">
+        <BackButton />
       </div>
-      <p>{selectedTask.description}</p>
-      <div className="my-2">
-        <PriorityBadge priority={selectedTask.priority} />
+
+      <div className="bg-main-100 dark:bg-main-900 rounded p-4 shadow">
+        <div className="flex justify-between items-center">
+          <h2 className="text-lg font-semibold">{selectedTask.title}</h2>
+          <div>
+            <Button onClick={() => router.push(`/${selectedTask.id}/edit`)}>
+              Edit
+            </Button>
+            <Button onClick={() => deleteTask(selectedTask.id)}>Delete</Button>
+          </div>
+        </div>
+        <p>{selectedTask.description}</p>
+
+        <div>
+          <Checkbox
+            colorScheme="green"
+            isChecked={selectedTask.status === TaskStatus.Completed}
+            onChange={() => changeTaskStatus(selectedTask.id)}
+          />
+          <span>Completed</span>
+        </div>
+
+        <div className="my-2">
+          <PriorityBadge priority={selectedTask.priority} />
+        </div>
+
+        <hr />
+
+        <div className="flex flex-wrap">
+          {selectedTask.tags.map((tag, index) => (
+            <span key={index}>{tag}</span>
+          ))}
+        </div>
       </div>
-      <div className="flex flex-wrap">
-        {selectedTask.tags.map((tag, index) => (
-          <Badge key={index} variant="outline">
-            {tag}
-          </Badge>
-        ))}
-      </div>
-    </div>
+    </>
   );
 };
 

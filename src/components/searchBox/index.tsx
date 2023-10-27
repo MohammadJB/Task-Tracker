@@ -7,8 +7,8 @@ interface SearchBoxProps {
 
 const SearchBox = ({ value, onChange }: SearchBoxProps) => {
   return (
-    <div className="flex items-center gap-2 bg-lightElement dark:bg-darkElement py-2 px-4 rounded shadow min-w-[40%]">
-      <FaSearch className="text-lightInput" />
+    <div className="flex items-center gap-2 bg-main-100 dark:bg-main-900 py-2 px-4 rounded shadow min-w-[40%]">
+      <FaSearch className="text-main-800 dark:text-main-200" />
       <input
         autoFocus
         className="outline-0 bg-transparent grow"
