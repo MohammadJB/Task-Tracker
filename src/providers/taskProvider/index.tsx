@@ -49,7 +49,11 @@ const TaskProvider = ({ children }: { children: React.ReactNode }) => {
       Pick<Task, "title" | "status" | "description" | "priority">
   ) => {
     taskItem.id = Math.random().toString();
-    taskItem.creationDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(Date.now());
+    taskItem.creationDate = new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(Date.now());
 
     const newTaskList = taskList.concat([taskItem as Task]);
     setTaskList(newTaskList);

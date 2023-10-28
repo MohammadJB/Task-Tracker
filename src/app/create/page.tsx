@@ -3,9 +3,11 @@
 import { useTask } from "@/customHooks/useTask";
 import TaskForm from "@/components/taskForm";
 import BackButton from "@/components/backButton";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const { createTask } = useTask();
+  const router = useRouter();
 
   return (
     <>
@@ -20,6 +22,7 @@ const Page = () => {
             description: values.description,
             priority: values.priority,
           });
+          router.replace("/");
         }}
       />
     </>

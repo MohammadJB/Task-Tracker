@@ -10,6 +10,7 @@ const Page = ({ params }: { params: { id: string } }) => {
   const [selectedTask, setSelectedTask] = useState<Task | undefined>();
 
   const { taskList, editTask } = useTask();
+  const router = useRouter();
 
   useEffect(() => {
     setSelectedTask(taskList.find((task) => task.id === params.id));
@@ -35,6 +36,7 @@ const Page = ({ params }: { params: { id: string } }) => {
             description: values.description,
             priority: values.priority,
           });
+          router.replace(`/${item.id}`);
         }}
       />
     </>
