@@ -71,7 +71,10 @@ const Page = ({ params }: { params: { id: string } }) => {
             </Button>
             <Button
               variant="contained"
-              onClick={() => deleteTask(selectedTask.id)}
+              onClick={() => {
+                deleteTask(selectedTask.id);
+                router.replace("/");
+              }}
               color="error"
             >
               Delete
