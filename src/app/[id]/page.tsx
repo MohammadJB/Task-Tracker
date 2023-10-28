@@ -5,7 +5,12 @@ import PriorityBadge from "@/components/taskItem/priorityBadge";
 import { useTask } from "@/customHooks/useTask";
 import { Task, TaskStatus } from "@/types";
 import { useEffect, useState } from "react";
-import { Checkbox, Button, FormControlLabel, CircularProgress } from "@mui/material";
+import {
+  Checkbox,
+  Button,
+  FormControlLabel,
+  CircularProgress,
+} from "@mui/material";
 import { useRouter } from "next/navigation";
 
 const Page = ({ params }: { params: { id: string } }) => {
@@ -57,7 +62,7 @@ const Page = ({ params }: { params: { id: string } }) => {
           <span className="text-xs">{selectedTask.creationDate}</span>
           <div>
             <Button
-              variant="outlined"
+              variant="contained"
               onClick={() => router.push(`/${selectedTask.id}/edit`)}
               color="warning"
               className="me-4"
@@ -65,7 +70,7 @@ const Page = ({ params }: { params: { id: string } }) => {
               Edit
             </Button>
             <Button
-              variant="outlined"
+              variant="contained"
               onClick={() => deleteTask(selectedTask.id)}
               color="error"
             >
