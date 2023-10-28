@@ -8,7 +8,7 @@ export type TaskContextType = {
   loading: boolean;
   createTask: (
     taskItem: Partial<Task> &
-      Pick<Task, "title" | "status" | "description"  | "priority">
+      Pick<Task, "title" | "status" | "description" | "priority">
   ) => void;
   deleteTask: (taskId: string) => void;
   editTask: (taskItem: Task) => void;
@@ -31,7 +31,7 @@ const TaskProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const taskList = localStorage.getItem(TASK_LIST_KEY);
 
-    if (Array.isArray(taskList)) {
+    if (taskList) {
       setTaskList(JSON.parse(taskList));
     }
     setLoading(false);
@@ -46,10 +46,10 @@ const TaskProvider = ({ children }: { children: React.ReactNode }) => {
 
   const createTask = (
     taskItem: Partial<Task> &
-      Pick<Task, "title" | "status" | "description"  | "priority">
+      Pick<Task, "title" | "status" | "description" | "priority">
   ) => {
-    taskItem.id = Date.now().toString() + Math.random().toString();
-    taskItem.creationDate = Date.now();
+    taskItem.id = Math.random().toString();
+    taskItem.creationDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(Date.now());
 
     const newTaskList = taskList.concat([taskItem as Task]);
     setTaskList(newTaskList);

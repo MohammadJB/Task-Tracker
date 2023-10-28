@@ -46,21 +46,25 @@ const Page = ({ params }: { params: { id: string } }) => {
         <div className="my-2">
           <PriorityBadge priority={selectedTask.priority} />
         </div>
-        <div className="flex justify-end gap-4">
-          <Button
-            variant="outlined"
-            onClick={() => router.push(`/${selectedTask.id}/edit`)}
-            color="warning"
-          >
-            Edit
-          </Button>
-          <Button
-            variant="outlined"
-            onClick={() => deleteTask(selectedTask.id)}
-            color="error"
-          >
-            Delete
-          </Button>
+        <div className="flex justify-between items-center">
+          <span className="text-xs">{selectedTask.creationDate}</span>
+          <div>
+            <Button
+              variant="outlined"
+              onClick={() => router.push(`/${selectedTask.id}/edit`)}
+              color="warning"
+              className="me-4"
+            >
+              Edit
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={() => deleteTask(selectedTask.id)}
+              color="error"
+            >
+              Delete
+            </Button>
+          </div>
         </div>
       </div>
     </>
