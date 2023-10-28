@@ -5,18 +5,25 @@ import PriorityBadge from "@/components/taskItem/priorityBadge";
 import { useTask } from "@/customHooks/useTask";
 import { Task, TaskStatus } from "@/types";
 import { useEffect, useState } from "react";
-import { Checkbox, Button, FormControlLabel } from "@mui/material";
+import { Checkbox, Button, FormControlLabel, CircularProgress } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 const Page = ({ params }: { params: { id: string } }) => {
   const [selectedTask, setSelectedTask] = useState<Task | undefined>();
 
-  const { taskList, changeTaskStatus, deleteTask } = useTask();
+  const { taskList, changeTaskStatus, deleteTask, loading } = useTask();
   const router = useRouter();
 
   useEffect(() => {
     setSelectedTask(taskList.find((task) => task.id === params.id));
   }, [params.id, taskList]);
+
+  if (loading)
+    return (
+      <div className="py-6 text-center">
+        <CircularProgress />
+      </div>
+    );
 
   if (!selectedTask) {
     return <div>Not found!</div>;

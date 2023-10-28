@@ -20,6 +20,10 @@ export default function Home() {
       </div>
     );
 
+  const filteredTasks = taskList.filter((task) =>
+    task.title.includes(searchValue)
+  );
+
   return (
     <>
       <div className="md:flex justify-between sticky top-0 py-4 bg-main-300 dark:bg-main-800 z-10">
@@ -37,13 +41,12 @@ export default function Home() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 pb-4">
-        {taskList.filter((task) => task.title.includes(searchValue)).length ===
-          0 && <p className="text-center col-span-3 py-6">No tasks exist.</p>}
-        {taskList
-          .filter((task) => task.title.includes(searchValue))
-          .map((taskItem) => (
-            <TaskItem key={taskItem.id} item={taskItem} />
-          ))}
+        {filteredTasks.length === 0 && (
+          <p className="text-center col-span-3 py-6">No tasks exist.</p>
+        )}
+        {filteredTasks.map((taskItem) => (
+          <TaskItem key={taskItem.id} item={taskItem} />
+        ))}
       </div>
     </>
   );

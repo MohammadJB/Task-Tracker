@@ -34,7 +34,7 @@ const TaskMenuPopover = ({
         </button>
       </ClickAwayListener>
       <Popover id={id} open={open} anchorEl={anchorElement}>
-        <ul className="rounded shadow min-w-[200px] bg-transparent">
+        <ul className="rounded shadow min-w-[200px] bg-main-100 dark:bg-main-900">
           <li
             className="rounded hover:bg-main-300 hover:dark:bg-main-700 p-2 cursor-pointer font-semibold"
             onClick={onEditClick}
